@@ -1,0 +1,95 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Movement : MonoBehaviour
+{
+    //Inputs
+    public float hInput, vInput;
+    private Vector3 playerInput;
+
+    //Character Controller
+    private CharacterController playerController;
+    private Vector3 playerDirection;
+    public float gravity = 9.8f;
+    public float fallVelocity;
+
+    //Camera
+    public Camera mainCamera;
+    private Vector3 cameraForward, cameraRight;
+    
+    //Speeds//
+    public float currentSpeed;
+    public float jumpForce;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerController = GetComponent<CharacterController>();
+    }
+    private void FixedUpdate()
+    {
+       
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
+
+        playerInput = new Vector3(hInput, 0, vInput);
+        playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
+
+        camDirection();
+
+        playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
+
+        playerController.transform.LookAt(playerController.transform.position + playerDirection);   //Girar desde su posicion hacia la correspondiente
+
+        SetGravity();      //Gravedad del pj
+        Jump();
+
+        playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
+
+        print(cameraForward + "\nRight: " + cameraRight);
+        print("Vel: " + playerController.velocity.magnitude);
+    }
+
+    void camDirection()
+    {
+        cameraForward = mainCamera.transform.forward;
+        cameraRight = mainCamera.transform.right;
+
+        cameraForward.y = 0;
+        cameraRight.y = 0;      //Ambos a 0 pues no nos importa su eje y*/
+
+        cameraForward = cameraForward.normalized;
+        cameraRight = cameraRight.normalized;     //Valor normalizado
+    }
+
+    void SetGravity()
+    {
+        if (playerController.isGrounded)
+        {
+            fallVelocity = -gravity * Time.deltaTime;
+            playerDirection.y = fallVelocity;
+
+        }
+        else
+        {
+            fallVelocity -= gravity * Time.deltaTime;
+            playerDirection.y = fallVelocity;
+
+        }
+    }
+
+    void Jump()
+    {
+        if (playerController.isGrounded && Input.GetButtonDown("Jump"))
+        {
+            fallVelocity = jumpForce;
+            playerDirection.y = fallVelocity;
+        }
+    }
+}
