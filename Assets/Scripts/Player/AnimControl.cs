@@ -6,8 +6,9 @@ public class AnimControl : MonoBehaviour
 {
     private Animator playerAnim;
     private Movement playerMov;
-    
-    float cSpeed;
+
+    public float cSpeed;
+    public
     //maxSpeed:6f       walkSpeed:1.5f
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class AnimControl : MonoBehaviour
         playerAnim.SetFloat("currentSpeed", cSpeed);*/
 
 
-        axxx();
+        //axxx();
         //if (playerMov.maxSpeed == 6) { cSpeed = 2; }
         // if(playerMov.playerSpeed)
         //playerAnim.SetFloat("currentSpeed",MaplayerMov.playerSpeed / 6);
@@ -43,7 +44,7 @@ public class AnimControl : MonoBehaviour
 
     void axxx()
     {
-        if ()//averiguar como hacer las anims bien y fluidas
+        if (true)//averiguar como hacer las anims bien y fluidas
         {
 
         }

@@ -406,8 +406,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124306359}
-  m_LocalRotation: {x: 0.06622727, y: -1.7685573e-15, z: 4.8982234e-15, w: 0.9978046}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.31839263, y: -0.000000017456163, z: -0.0000000058630274,
+    w: 0.947959}
+  m_LocalPosition: {x: 0, y: -1.1344553, z: 0.26583898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2104426855}
@@ -772,8 +773,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457987771}
-  m_LocalRotation: {x: -0.0032925503, y: -0.000000001881938, z: -6.198342e-12, w: 0.9999946}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0032925557, y: -0.000000012458328, z: -4.102174e-11, w: 0.9999946}
+  m_LocalPosition: {x: 0, y: -0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 13634324}
@@ -1055,7 +1056,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.031317323, y: -0.00000003466356, z: 0.0000000010861027, w: 0.9995095}
+  m_LocalRotation: {x: 0.031317305, y: 0.000000042290417, z: -0.0000000013250716,
+    w: 0.9995095}
   m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1271,8 +1273,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039181052}
-  m_LocalRotation: {x: 0.031317327, y: -0.000000017331782, z: 5.4304555e-10, w: 0.9995095}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.031317305, y: 0.000000029787703, z: -9.333342e-10, w: 0.9995095}
+  m_LocalPosition: {x: 0, y: -0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 200895075}
@@ -1667,8 +1669,7 @@ MonoBehaviour:
   gravity: 10
   fallVelocity: 0
   mainCamera: {fileID: 963194227}
-  playerSpeed: 0
-  maxSpeed: 3
+  currentSpeed: 0
   jumpForce: 2
 --- !u!95 &2108017681
 Animator:
@@ -1696,8 +1697,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108017675}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4888d59eab1dab438d75796aefc679d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cSpeed: 0

@@ -19,14 +19,18 @@ public class Movement : MonoBehaviour
     private Vector3 cameraForward, cameraRight;
     
     //Speeds//
-    public float playerSpeed, maxSpeed;
+    public float currentSpeed;
     public float jumpForce;
-
-
+    
+    //Anims
+    private Animator playerAnim;
+    private float walkSpeed = 1.25f, sprintSpeed = 6;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<CharacterController>();
+
+        playerAnim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -43,6 +47,8 @@ public class Movement : MonoBehaviour
         playerInput = new Vector3(hInput, 0, vInput);
         playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
 
+        playerAnim.SetFloat("walkVelocity", playerInput.magnitude * currentSpeed);
+
         camDirection();
 
         playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
@@ -52,12 +58,12 @@ public class Movement : MonoBehaviour
         SetGravity();      //Gravedad del pj
         Jump();
 
-        playerController.Move(playerDirection * maxSpeed * Time.deltaTime);
+        playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
 
         Vector3 a = playerDirection ;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
         //print(cameraForward + "\nRight: " + cameraRight);
         print("Vel: " + a);
-        playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+        //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
     }
 
     void camDirection()
@@ -85,7 +91,9 @@ public class Movement : MonoBehaviour
             fallVelocity -= gravity * Time.deltaTime;
             playerDirection.y = fallVelocity;
 
+            playerAnim.SetFloat("verticalVelocity", playerController.velocity.y);
         }
+        playerAnim.SetBool("isGrounded", playerController.isGrounded);
     }
 
     void Jump()
@@ -94,14 +102,39 @@ public class Movement : MonoBehaviour
         {
             fallVelocity = jumpForce;
             playerDirection.y = fallVelocity;
+            playerAnim.SetTrigger("playerJump");
+
         }
     }
     void Sprint()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            maxSpeed = 6f;
+            if(currentSpeed < sprintSpeed) 
+            {
+                currentSpeed += 0.05f;
+            }
+            else if (currentSpeed >= sprintSpeed)
+            {
+                currentSpeed = sprintSpeed;
+            }
         }
-        else { maxSpeed = 3f; }
+        else {
+
+            if (currentSpeed > walkSpeed)
+            {
+                currentSpeed -= 0.05f;
+            }
+            else if (currentSpeed <= walkSpeed)
+            {
+                currentSpeed = walkSpeed;
+            }
+            
+        }
+    }
+
+    private void OnAnimatorMove()
+    {
+        
     }
 }
