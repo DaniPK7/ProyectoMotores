@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
     //Anims
     private Animator playerAnim;
     private float walkSpeed = 1.25f, sprintSpeed = 6;
+    public bool sprint;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,8 +63,13 @@ public class Movement : MonoBehaviour
 
         Vector3 a = playerDirection ;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
         //print(cameraForward + "\nRight: " + cameraRight);
-        print("Vel: " + a);
+        //print("Vel: " + a);
+        print(vInput);
         //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+        playerAnim.SetBool("playerSprint", sprint);
+
+        playerAnim.SetFloat("verticalVelocity", playerController.velocity.y);
+
     }
 
     void camDirection()
@@ -91,7 +97,7 @@ public class Movement : MonoBehaviour
             fallVelocity -= gravity * Time.deltaTime;
             playerDirection.y = fallVelocity;
 
-            playerAnim.SetFloat("verticalVelocity", playerController.velocity.y);
+            //playerAnim.SetFloat("verticalVelocity", playerController.velocity.y);
         }
         playerAnim.SetBool("isGrounded", playerController.isGrounded);
     }
@@ -110,7 +116,9 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            if(currentSpeed < sprintSpeed) 
+            sprint = true;
+
+            if (currentSpeed < sprintSpeed) 
             {
                 currentSpeed += 0.05f;
             }
@@ -120,6 +128,7 @@ public class Movement : MonoBehaviour
             }
         }
         else {
+            sprint = false;
 
             if (currentSpeed > walkSpeed)
             {
@@ -135,6 +144,7 @@ public class Movement : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        
+       // transform.parent.rotation = anim.rootRotation;
+       // transform.parent.position += anim.deltaPosition;
     }
 }
