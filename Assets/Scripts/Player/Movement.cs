@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
         Vector3 a = playerDirection ;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
         //print(cameraForward + "\nRight: " + cameraRight);
         //print("Vel: " + a);
-        print(vInput);
+        //print(vInput);
         //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
         playerAnim.SetBool("playerSprint", sprint);
 
