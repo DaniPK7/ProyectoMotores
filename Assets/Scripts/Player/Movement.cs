@@ -26,11 +26,14 @@ public class Movement : MonoBehaviour
     private Animator playerAnim;
     private float walkSpeed = 1.25f, sprintSpeed = 6;
     public bool sprint;
+
+    //Player
+    public bool playerAlive;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<CharacterController>();
-
+        playerAlive = true;
         playerAnim = GetComponent<Animator>();
     }
     private void FixedUpdate()
@@ -40,33 +43,41 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Sprint();   
 
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
+        if (playerAlive)
+        {
+            Sprint();
 
-        playerInput = new Vector3(hInput, 0, vInput);
-        playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
+            hInput = Input.GetAxis("Horizontal");
+            vInput = Input.GetAxis("Vertical");
 
-        playerAnim.SetFloat("walkVelocity", playerInput.magnitude * currentSpeed);
+            playerInput = new Vector3(hInput, 0, vInput);
+            playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
 
-        camDirection();
+            playerAnim.SetFloat("walkVelocity", playerInput.magnitude * currentSpeed);
 
-        playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
+            camDirection();
 
-        playerController.transform.LookAt(playerController.transform.position + playerDirection);   //Girar desde su posicion hacia la correspondiente
+            playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
 
-        SetGravity();      //Gravedad del pj
-        Jump();
+            playerController.transform.LookAt(playerController.transform.position + playerDirection);   //Girar desde su posicion hacia la correspondiente
 
-        playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
+            SetGravity();      //Gravedad del pj
+            Jump();
 
-        Vector3 a = playerDirection ;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
-        //print(cameraForward + "\nRight: " + cameraRight);
-        //print("Vel: " + a);
-        //print(vInput);
-        //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+            playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
+
+            Vector3 a = playerDirection;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
+                                        //print(cameraForward + "\nRight: " + cameraRight);
+                                        //print("Vel: " + a);
+                                        //print(vInput);
+                                        //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+        }
+        else { 
+            playerAnim.SetTrigger("DeadTrigger");
+        }
         playerAnim.SetBool("playerSprint", sprint);
+        playerAnim.SetBool("Dead", playerAlive);
 
         playerAnim.SetFloat("verticalVelocity", playerController.velocity.y);
 

@@ -14,7 +14,11 @@ public class healthbar : MonoBehaviour
     public Color zeroHealth = Color.red;
 
     public float currentHealth;
-    private bool isDead;
+    public bool isDead;
+
+    Movement movementSC;
+    public GameObject player;
+    Animator playerAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +26,16 @@ public class healthbar : MonoBehaviour
         currentHealth = startingHealth;
         isDead = false;
         setHealthUI();
+        playerAnimator = player.GetComponent<Animator>();
+
+        movementSC = FindObjectOfType<Movement>();
     }
 
     private void Update()
     {
         setHealthUI();
+        if (currentHealth <= 0)
+            death();
     }
 
     public void takeDamage(float damage)
@@ -41,6 +50,10 @@ public class healthbar : MonoBehaviour
     private void death()
     {
         isDead = true;
+        movementSC.playerAlive = false;
+        
+
+        playerAnimator.SetTrigger("DeadTrigger");
     }
 
     private void setHealthUI()

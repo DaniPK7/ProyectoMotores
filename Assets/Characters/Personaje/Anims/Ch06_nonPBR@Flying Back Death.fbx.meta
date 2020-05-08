@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a230f2184f90220438609375d4e6e9cd
+guid: 771cddebd41e2614bbe4a093f5836367
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking (2)
+      name: Flying Back Death
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 87
+      lastFrame: 181
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

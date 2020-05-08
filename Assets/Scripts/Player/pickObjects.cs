@@ -6,6 +6,7 @@ public class pickObjects : MonoBehaviour
 {
     // Start is called before the first frame update
     itemManage itemSC;
+    
     void Start()
     {
         itemSC = FindObjectOfType<itemManage>();
