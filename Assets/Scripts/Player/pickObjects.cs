@@ -27,7 +27,7 @@ public class pickObjects : MonoBehaviour
             itemSC.updateText();
 
             //item.gameObject.SetActive(false);
-            Destroy(item.gameObject);
+            Destroy(item.transform.parent.gameObject);
         }
     }
 }

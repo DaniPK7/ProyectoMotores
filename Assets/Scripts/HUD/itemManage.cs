@@ -27,7 +27,6 @@ public class itemManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         
     }
 
