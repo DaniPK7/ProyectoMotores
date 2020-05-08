@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class batteryManagement : MonoBehaviour
 {
-    //[SerializeField]
+    [SerializeField]
     List<Texture> batteryImages;
 
     int currentIndex;
@@ -25,11 +25,11 @@ public class batteryManagement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             currentIndex += 1;
         }
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             if (--currentIndex < 0)
             {
