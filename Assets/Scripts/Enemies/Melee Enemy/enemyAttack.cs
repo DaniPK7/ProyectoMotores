@@ -6,10 +6,13 @@ public class enemyAttack : MonoBehaviour
 {
     healthbar health;
     public BoxCollider hand;
+
+    enemyPatrol enemyPatrolSC;
     // Start is called before the first frame update
     void Start()
     {
         health = FindObjectOfType<healthbar>();
+        enemyPatrolSC = FindObjectOfType<enemyPatrol>();
         hand.enabled = false;
     }
       

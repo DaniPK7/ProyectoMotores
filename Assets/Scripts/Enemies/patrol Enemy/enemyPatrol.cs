@@ -28,11 +28,17 @@ public class enemyPatrol : MonoBehaviour
     float enemyHP;
     bool enemyIsAlive;
     healthbar healthSC;
+    Movement playerSC;
+    bool playerAlive;
 
     //Atack
     private float distanceWithPlayer;
     public GameObject player;
     float chaseRange = 10f;
+
+    float attackRange = 2f;
+    bool attackPlayer;
+
     bool inRange = false;
     bool chaseHim = false;
     bool playerSS = false;
@@ -45,11 +51,13 @@ public class enemyPatrol : MonoBehaviour
     {
 
         healthSC = FindObjectOfType<healthbar>();
+        playerSC = FindObjectOfType<Movement>();
 
         navMesh = GetComponent<NavMeshAgent>();
 
         enemyAnim = GetComponent<Animator>();
 
+        attackPlayer = false;
 
         enemyHP = 100f;
 
@@ -79,10 +87,12 @@ public class enemyPatrol : MonoBehaviour
         setState();
 
         patrolOrWait();
+        playerAlive = playerSC.playerAlive;
 
         enemyAnim.SetBool("Wait", waiting);
         enemyAnim.SetBool("InRange", inRange);
         enemyAnim.SetBool("Chase", chaseHim);
+        enemyAnim.SetBool("Attack", attackPlayer);
 
 
 
@@ -105,34 +115,52 @@ public class enemyPatrol : MonoBehaviour
         {
             distanceWithPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (distanceWithPlayer < chaseRange)                   //Chase
+            if (distanceWithPlayer < chaseRange && playerAlive)                   //Chase
             {
-               
-                print("TE REVIENTO");
-                inRange = true;
-                if (!chaseHim) {
-                    navMesh.Stop();
-                    
+                
+
+                if (distanceWithPlayer <= attackRange)      //ataca
+                {
+                    attackPlayer = true;
+                    print("TE REVIENTO");
+
 
                 }
+                else
+                {
+                   
 
-                else {  
-                    playerSS = true;                    
-                    navMesh.SetDestination(player.transform.position);
+                    attackPlayer = false;
+
+
+                    inRange = true;
+                    if (!chaseHim)
+                    {
+                        navMesh.Stop();
+
+
+                    }
+
+                    else
+                    {
+                        playerSS = true;
+                        navMesh.SetDestination(player.transform.position);
+                    }
+
+                    Quaternion _lookRotation = Quaternion.LookRotation((player.transform.position - transform.position).normalized);
+
+                    transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * 10f);
+                    //transform.LookAt(player.transform);
+
+                    //
                 }
-
-                Quaternion _lookRotation =  Quaternion.LookRotation((player.transform.position - transform.position).normalized);
-
-                transform.rotation =   Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime *10f);
-                //transform.LookAt(player.transform);
-
-                //
             }
 
             else                                                    //Patrol
             {
-                navMesh.Resume();
-                
+                attackPlayer = false;
+
+
                 navMesh.speed = 1.5f;
                 inRange = false;
                 chaseHim = false;
@@ -241,4 +269,18 @@ public class enemyPatrol : MonoBehaviour
             }
         }
     }
+
+    public void StopAndAttack() 
+    {
+        print("aja1");
+
+        navMesh.Stop();
+    }
+    public void PostAttack() 
+    {
+        print("aja2 ");
+        navMesh.Resume();
+
+    }
+
 }

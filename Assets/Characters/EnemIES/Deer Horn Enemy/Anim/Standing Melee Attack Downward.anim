@@ -67325,6 +67325,13 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.016666668
+    functionName: PostAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.78333336
     functionName: punchOFF
     data: 
@@ -67334,6 +67341,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.85
     functionName: punchON
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.25
+    functionName: StopAndAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
