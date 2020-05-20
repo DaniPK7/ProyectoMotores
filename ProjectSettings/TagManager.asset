@@ -8,8 +8,8 @@ TagManager:
   - keyItem
   - DeerSkullHand
   - battery
-  - GoblinHand
-  - light
+  - generator
+  - plier
   layers:
   - Default
   - TransparentFX
