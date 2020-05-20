@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7160737825003503407}
+  - component: {fileID: 4090589266924794598}
   m_Layer: 0
   m_Name: valla madera 5
   m_TagString: Untagged
@@ -109,3 +110,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &4090589266924794598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141595718623661372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.661541, y: 208.39908, z: 173.1689}
+  m_Center: {x: 8.012899, y: 97.851585, z: 66.614914}
