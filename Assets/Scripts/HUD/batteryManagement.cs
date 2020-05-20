@@ -44,7 +44,7 @@ public class batteryManagement : MonoBehaviour
 
     void SetBAtteryTexture() 
     {
-        if (batteryTimeLeft >= maxBattery / 1.25f)     //cuando max es 200 --> 150
+        if (batteryTimeLeft >= maxBattery*0.75f)     //cuando max es 200 --> 150
             currentIndex = 0;
         else if (batteryTimeLeft >=maxBattery / 2)        //100
             currentIndex = 1;
