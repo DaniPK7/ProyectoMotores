@@ -1,0 +1,26 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 09.01.2012 13:28:31
+
+newmtl lineman_pliers_body
+	Ns 60.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.4824 0.4824 0.4824
+	Kd 0.4824 0.4824 0.4824
+	Ks 0.6750 0.6750 0.6750
+	Ke 0.0000 0.0000 0.0000
+
+newmtl lineman_pliers_grip
+	Ns 11.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1373 0.6039 1.0000
+	Kd 0.1373 0.6039 1.0000
+	Ks 0.4770 0.4770 0.4770
+	Ke 0.0000 0.0000 0.0000
