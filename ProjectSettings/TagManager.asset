@@ -10,6 +10,8 @@ TagManager:
   - battery
   - generator
   - plier
+  - light
+  - GoblinHand
   layers:
   - Default
   - TransparentFX

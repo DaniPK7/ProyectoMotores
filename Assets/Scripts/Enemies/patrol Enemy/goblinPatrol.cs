@@ -29,6 +29,7 @@ public class goblinPatrol : MonoBehaviour
     bool enemyIsAlive;
     healthbar healthSC;
     Movement playerSC;
+    batteryManagement batManSC;
     bool playerAlive;
 
     //Atack
@@ -52,6 +53,7 @@ public class goblinPatrol : MonoBehaviour
 
         healthSC = FindObjectOfType<healthbar>();
         playerSC = FindObjectOfType<Movement>();
+        batManSC = FindObjectOfType<batteryManagement>();
 
         navMesh = GetComponent<NavMeshAgent>();
 
@@ -284,9 +286,9 @@ public class goblinPatrol : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("light"))
+        if (other.CompareTag("light") && batManSC.lanternOn)
         {
             if (enemyIsAlive)
             {
