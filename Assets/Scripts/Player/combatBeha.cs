@@ -31,6 +31,12 @@ public class combatBeha : MonoBehaviour
             health.takeDamage(25f);
             gotHit = true;
         }
+        if (collider.CompareTag("GoblinHand") && collider.enabled == true)
+        {
+            if (health.currentHealth - 5f <= 0) { health.isDead = true; }
+            health.takeDamage(5f);
+            gotHit = true;
+        }
     }
 
     

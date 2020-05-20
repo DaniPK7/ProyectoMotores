@@ -36,7 +36,7 @@ public class enemyPatrol : MonoBehaviour
     public GameObject player;
     float chaseRange = 10f;
 
-    float attackRange = 2f;
+    float attackRange = 4f;
     bool attackPlayer;
 
     bool inRange = false;
@@ -121,6 +121,7 @@ public class enemyPatrol : MonoBehaviour
 
                 if (distanceWithPlayer <= attackRange)      //ataca
                 {
+                    navMesh.Stop();
                     attackPlayer = true;
                     print("TE REVIENTO");
 
@@ -128,8 +129,8 @@ public class enemyPatrol : MonoBehaviour
                 }
                 else
                 {
-                   
 
+                    navMesh.Resume();
                     attackPlayer = false;
 
 
