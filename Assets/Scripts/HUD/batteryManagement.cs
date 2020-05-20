@@ -11,16 +11,16 @@ public class batteryManagement : MonoBehaviour
     [SerializeField]
     List<Texture> batteryImages;
 
-    int currentIndex;
-    bool lanternOn;
+    public int currentIndex;
+    public bool lanternOn;
 
     private RawImage currentImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        lanternOn = true;
-        maxBattery = 200;
+        lanternOn = false;
+        //maxBattery = 200;
         batteryTimeLeft = maxBattery;
         currentIndex = 0;
         currentImage = GetComponent<RawImage>();
@@ -38,17 +38,22 @@ public class batteryManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (batteryTimeLeft>=150) 
+
+        SetBAtteryTexture();
+    }
+
+    void SetBAtteryTexture() 
+    {
+        if (batteryTimeLeft >= maxBattery / 1.25f)     //cuando max es 200 --> 150
             currentIndex = 0;
-        else if (batteryTimeLeft>=100)
+        else if (batteryTimeLeft >=maxBattery / 2)        //100
             currentIndex = 1;
-        else if (batteryTimeLeft>=50)
-            currentIndex =2;
-        else if (batteryTimeLeft > 0)
+        else if (batteryTimeLeft >= maxBattery / 4)         //50
+            currentIndex = 2;
+        else if (batteryTimeLeft > 0)           //0
             currentIndex = 3;
         else
             currentIndex = 4;
-        currentImage.texture =  batteryImages[currentIndex];
-
+        currentImage.texture = batteryImages[currentIndex];
     }
 }
