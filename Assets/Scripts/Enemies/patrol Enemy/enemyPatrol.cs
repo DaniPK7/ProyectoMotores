@@ -42,16 +42,23 @@ public class enemyPatrol : MonoBehaviour
     bool inRange = false;
     bool chaseHim = false;
     bool playerSS = false;
-
+    //
+    bool nocked = false;
+    //
     //anim
     Animator enemyAnim;
 
     // Start is called before the first frame update
+    //
+    batteryManagement batManSC;
+    //
     void Start()
     {
 
         healthSC = FindObjectOfType<healthbar>();
         playerSC = FindObjectOfType<Movement>();
+        //
+        batManSC = FindObjectOfType<batteryManagement>();
 
         navMesh = GetComponent<NavMeshAgent>();
 
@@ -93,19 +100,32 @@ public class enemyPatrol : MonoBehaviour
         enemyAnim.SetBool("InRange", inRange);
         enemyAnim.SetBool("Chase", chaseHim);
         enemyAnim.SetBool("Attack", attackPlayer);
-
-
-
+        //
+        enemyAnim.SetBool("Nocked", nocked);
+        //
 
     }
-
+    //
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("light") && batManSC.lanternOn)
+        {
+            nocked = true;
+            chaseHim = false;
+            navMesh.Stop();
+        }
+    }
+    //
     public void SetChase() 
     {
+        //
+        nocked = false;
+        //
         chaseHim = true;
         navMesh.speed = 5;
         navMesh.Resume();
-
         waiting = true;
+        
     }
 
 
@@ -114,6 +134,7 @@ public class enemyPatrol : MonoBehaviour
         if (enemyIsAlive)
         {
             distanceWithPlayer = Vector3.Distance(transform.position, player.transform.position);
+            
 
             if (distanceWithPlayer < chaseRange && playerAlive)                   //Chase
             {
@@ -132,7 +153,7 @@ public class enemyPatrol : MonoBehaviour
 
                     navMesh.Resume();
                     attackPlayer = false;
-
+                    
 
                     inRange = true;
                     if (!chaseHim)
