@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: ffce9d4a194138f46a4dea7da91eebfd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lato
+  fontNames:
+  - Lato
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e93bf101837fa1b4ea09f30e25197b30, type: 3}
+  - {fileID: 12800000, guid: f0800ec1e8884bc42aad95ab0612e43e, type: 3}
+  - {fileID: 12800000, guid: 30c391c2528dc264d9112965a0a59229, type: 3}
+  - {fileID: 12800000, guid: f2f5b4c2b85e82b47befb8a9c5125fed, type: 3}
+  - {fileID: 12800000, guid: 3aff7053fc5261f4ba2338a404fe691a, type: 3}
+  - {fileID: 12800000, guid: 6aa374349f246d84294a6192fbaf838a, type: 3}
+  - {fileID: 12800000, guid: 01b0e7847ec44574ba1bd7693dba7d51, type: 3}
+  - {fileID: 12800000, guid: 9a0bb9e488a0bb24ebcced0a526b8293, type: 3}
+  - {fileID: 12800000, guid: 9dc6fb368e7480b4eb7cf412a7eba2f2, type: 3}
+  - {fileID: 12800000, guid: e06f286817805714684152d634e3afa7, type: 3}
+  - {fileID: 12800000, guid: 6906d0597f700f640a34de411de5d6c1, type: 3}
+  - {fileID: 12800000, guid: 6134d6b97a73e9b42941c916f5b14e59, type: 3}
+  - {fileID: 12800000, guid: c60892caede092046855fe06b7372c4c, type: 3}
+  - {fileID: 12800000, guid: cb73692c9ee8ecd4fa1ab617d888fbda, type: 3}
+  - {fileID: 12800000, guid: 1585205cab8ccca48aa2543508486bc5, type: 3}
+  - {fileID: 12800000, guid: 36d9e67cd7ee9754192de8dfeac1e293, type: 3}
+  - {fileID: 12800000, guid: c29eeedebd587f147b4a9e0929b8b40e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
