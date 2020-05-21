@@ -10,7 +10,7 @@ public class pauseMenu : MonoBehaviour
 {
     Movement playerSC;
 
-    public GameObject menuPause, buttons, sureDialog;
+    public GameObject menuPause, buttons, sureDialog, configMenu;
 
     //public GameObject buttons;
 
@@ -81,6 +81,20 @@ public class pauseMenu : MonoBehaviour
 
         sureDialog.SetActive(false);
 
+    }
+
+    public void ShowConfigMenu()
+    {
+        buttons.SetActive(false);
+
+        configMenu.SetActive(true);
+    } 
+
+    public void HideConfigMenu()
+    {
+        buttons.SetActive(true);
+
+        configMenu.SetActive(false);
     }
 
     public void ExitGame()
