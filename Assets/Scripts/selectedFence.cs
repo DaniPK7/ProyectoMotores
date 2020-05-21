@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class selectedFence : MonoBehaviour
 {
-    public GameObject fence;
+    public GameObject fence, brokenFence;
     private generatorManagement generator;
     private plierController plier;
     void Start()
     {
         generator = FindObjectOfType<generatorManagement>();
         plier = FindObjectOfType<plierController>();
+        brokenFence.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,8 +25,9 @@ public class selectedFence : MonoBehaviour
         {
             if (!generator.electricityUp && Input.GetKeyDown(KeyCode.R) && plier.plierHUD.activeInHierarchy)
             {
-                fence.gameObject.SetActive(false);
+                fence.SetActive(false);
                 plier.plierHUD.SetActive(false);
+                brokenFence.SetActive(true);
             }
         }
     }
