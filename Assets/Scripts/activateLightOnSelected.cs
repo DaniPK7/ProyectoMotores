@@ -10,7 +10,7 @@ public class activateLightOnSelected : MonoBehaviour
     // Start is called before the first frame update
     public EventSystem   eventSystem;
 
-    public GameObject playLight, configLight, exitLight;
+    public GameObject buttons, playLight, configLight, exitLight;
 
     private string selected;
     void Start()
@@ -22,6 +22,7 @@ public class activateLightOnSelected : MonoBehaviour
     void Update()
     {
         selected = eventSystem.currentSelectedGameObject.gameObject.name;
+        if (buttons.active) { print("jejejeje"); }
 
         if (selected == "Play") 
         {

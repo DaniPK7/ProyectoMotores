@@ -13,6 +13,14 @@ public class welcomeScreen : MonoBehaviour
 
     public GameObject  buttons, sureDialog, configMenu;
 
+    public GameObject  exitConfig, configButton ,  cancelExit;
+
+    public Animator cameraAnim, configAnimator;
+
+    public EventSystem eventSystem;
+
+    private GameObject selected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,13 +57,24 @@ public class welcomeScreen : MonoBehaviour
         buttons.SetActive(false);
 
         configMenu.SetActive(true);
+
+        cameraAnim.SetBool("OpenConfig", true);
+        configAnimator.SetBool("OpenConfig", true);
+
+        eventSystem.SetSelectedGameObject(exitConfig);
     }
 
     public void HideConfigMenu()
     {
         buttons.SetActive(true);
 
-        configMenu.SetActive(false);
+       // configMenu.SetActive(false);
+
+        cameraAnim.SetBool("OpenConfig", false);
+        configAnimator.SetBool("OpenConfig", false);
+
+        eventSystem.SetSelectedGameObject(configButton);
+        
     }
 
 
