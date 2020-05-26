@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-
+using TMPro;
 
 
 public class welcomeScreen : MonoBehaviour
@@ -13,7 +13,7 @@ public class welcomeScreen : MonoBehaviour
 
     public GameObject  buttons, sureDialog, configMenu;
 
-    public GameObject  exitConfig, configButton ,  cancelExit;
+    public GameObject  exitConfig, configButton , exitButton,  cancelExit;
 
     public Animator cameraAnim, configAnimator;
 
@@ -21,16 +21,22 @@ public class welcomeScreen : MonoBehaviour
 
     private GameObject selected;
 
+    //
+    private bool infoBool;
+    public TextMeshProUGUI infoText;
+    private string infoString;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        infoBool = false;
+        infoString = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        showControls();
     }
 
     public void StartGame() 
@@ -41,14 +47,25 @@ public class welcomeScreen : MonoBehaviour
     {
         buttons.SetActive(false);
 
+        cameraAnim.SetBool("ExitConfig", true);
+
         sureDialog.SetActive(true);
+
+        eventSystem.SetSelectedGameObject(cancelExit);
+
     }
 
     public void HideSureMenu()
     {
         buttons.SetActive(true);
 
+        cameraAnim.SetBool("ExitConfig", false);
+
+
         sureDialog.SetActive(false);
+
+        eventSystem.SetSelectedGameObject(exitButton);
+
 
     }
 
@@ -59,7 +76,8 @@ public class welcomeScreen : MonoBehaviour
         configMenu.SetActive(true);
 
         cameraAnim.SetBool("OpenConfig", true);
-        configAnimator.SetBool("OpenConfig", true);
+        infoBool = true;
+        configAnimator.SetBool("OpenConfig", infoBool);
 
         eventSystem.SetSelectedGameObject(exitConfig);
     }
@@ -71,7 +89,9 @@ public class welcomeScreen : MonoBehaviour
        // configMenu.SetActive(false);
 
         cameraAnim.SetBool("OpenConfig", false);
-        configAnimator.SetBool("OpenConfig", false);
+        infoBool = false;
+
+        configAnimator.SetBool("OpenConfig", infoBool);
 
         eventSystem.SetSelectedGameObject(configButton);
         
@@ -82,4 +102,25 @@ public class welcomeScreen : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void showControls() 
+    {
+        if (infoBool) 
+        {
+            if (Input.GetKey(KeyCode.W))                { infoString = "move character forward"; }
+            else if (Input.GetKey(KeyCode.A))           { infoString = "move character backwards"; }
+            else if (Input.GetKey(KeyCode.S))           { infoString = "move character to the left"; }
+            else if (Input.GetKey(KeyCode.D))           { infoString = "move character to the right"; }
+            else if (Input.GetKey(KeyCode.R))           { infoString = "pick objects"; }
+            else if (Input.GetKey(KeyCode.LeftShift))   { infoString = "sprint"; }
+            else if (Input.GetKey(KeyCode.Space))       { infoString = "jump"; }
+            else if (Input.GetKey(KeyCode.Escape))      { infoString = "pause menu"; }
+            else                                        { infoString = "press the key to see functionality"; }
+
+
+            infoText.text = infoString;
+
+        }
+    }
+
 }
