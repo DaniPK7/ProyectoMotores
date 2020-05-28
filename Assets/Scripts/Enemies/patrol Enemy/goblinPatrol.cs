@@ -44,16 +44,26 @@ public class goblinPatrol : MonoBehaviour
     bool chaseHim = false;
     bool playerSS = false;
 
+    private int goblinId;
+
     //anim
     Animator enemyAnim;
+    //
+    private goblinSounds soundsGoblin;
 
     // Start is called before the first frame update
     void Start()
     {
+        //print("goblin:" + this.name.Substring(this.name.Length-1));
+       
+        goblinId = Convert.ToInt32(this.name.Substring(this.name.Length - 1));
+        print("heheboy"+goblinId);
+        print("heheboy"+goblinId);
 
         healthSC = FindObjectOfType<healthbar>();
         playerSC = FindObjectOfType<Movement>();
         batManSC = FindObjectOfType<batteryManagement>();
+        soundsGoblin = FindObjectOfType<goblinSounds>();
 
         navMesh = GetComponent<NavMeshAgent>();
 
@@ -99,6 +109,7 @@ public class goblinPatrol : MonoBehaviour
             enemyAnim.SetBool("Chase", chaseHim);
             enemyAnim.SetBool("Attack", attackPlayer);
         }
+        print("goblin:" + this.name.Substring(this.name.Length-1)+"golbinID: "+ goblinId);
 
     }
 
@@ -120,12 +131,16 @@ public class goblinPatrol : MonoBehaviour
 
             if (distanceWithPlayer < chaseRange && playerAlive)                   //Chase
             {
+                
+                soundsGoblin.SetClip(goblinId,1); ;
 
                 navMesh.SetDestination(player.transform.position);
                 navMesh.speed = 3;
 
                 if (distanceWithPlayer <= attackRange)      //ataca
                 {
+                    
+
                     attackPlayer = true;
                     navMesh.Stop();
                     print("TE REVIENTO");
@@ -164,6 +179,7 @@ public class goblinPatrol : MonoBehaviour
 
             else                                                    //Patrol
             {
+                soundsGoblin.SetClip(goblinId, 0);
                 attackPlayer = false;
 
 
@@ -225,6 +241,7 @@ public class goblinPatrol : MonoBehaviour
 
            
         }
+
     }
 
     void setState() 
@@ -237,6 +254,7 @@ public class goblinPatrol : MonoBehaviour
         {
             enemyIsAlive = false;
             navMesh.Stop();
+            soundsGoblin.SetClip(goblinId, 2);
         }
     }
 
@@ -300,7 +318,8 @@ public class goblinPatrol : MonoBehaviour
 
     private void destroyGoblin()
     {
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
 }
