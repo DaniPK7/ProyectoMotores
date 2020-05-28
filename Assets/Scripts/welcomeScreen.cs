@@ -41,7 +41,9 @@ public class welcomeScreen : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("Environment");
+        cameraAnim.SetTrigger("Play");
+
+        print(cameraAnim.GetCurrentAnimatorStateInfo(1));
     }
     public void ShowSureMenu()
     {
@@ -108,8 +110,8 @@ public class welcomeScreen : MonoBehaviour
         if (infoBool) 
         {
             if (Input.GetKey(KeyCode.W))                { infoString = "move character forward"; }
-            else if (Input.GetKey(KeyCode.A))           { infoString = "move character backwards"; }
-            else if (Input.GetKey(KeyCode.S))           { infoString = "move character to the left"; }
+            else if (Input.GetKey(KeyCode.A))           { infoString = "move character to the left"; }
+            else if (Input.GetKey(KeyCode.S))           { infoString = "move character backwards"; }
             else if (Input.GetKey(KeyCode.D))           { infoString = "move character to the right"; }
             else if (Input.GetKey(KeyCode.R))           { infoString = "pick objects"; }
             else if (Input.GetKey(KeyCode.LeftShift))   { infoString = "sprint"; }

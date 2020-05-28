@@ -22,6 +22,7 @@ public class activateLightOnSelected : MonoBehaviour
     void Update()
     {
         selected = eventSystem.currentSelectedGameObject.gameObject.name;
+
         if (buttons.active) { print("jejejeje"); }
 
         if (selected == "Play") 
