@@ -48,10 +48,12 @@ public class enemyPatrol : MonoBehaviour
     //anim
     Animator enemyAnim;
 
+
     // Start is called before the first frame update
     //
     batteryManagement batManSC;
     //
+    manageAudio audioManage;
     void Start()
     {
 
@@ -59,6 +61,7 @@ public class enemyPatrol : MonoBehaviour
         playerSC = FindObjectOfType<Movement>();
         //
         batManSC = FindObjectOfType<batteryManagement>();
+        audioManage = FindObjectOfType<manageAudio>();
 
         navMesh = GetComponent<NavMeshAgent>();
 
@@ -143,6 +146,8 @@ public class enemyPatrol : MonoBehaviour
                 if (distanceWithPlayer <= attackRange)      //ataca
                 {
                     navMesh.Stop();
+                    audioManage.SetClip(2);
+
                     attackPlayer = true;
                     print("TE REVIENTO");
 
@@ -159,7 +164,7 @@ public class enemyPatrol : MonoBehaviour
                     if (!chaseHim)
                     {
                         navMesh.Stop();
-
+                        audioManage.SetClip(1);
 
                     }
 
@@ -180,6 +185,8 @@ public class enemyPatrol : MonoBehaviour
 
             else                                                    //Patrol
             {
+                audioManage.SetClip(0);
+
                 attackPlayer = false;
 
 
@@ -213,6 +220,7 @@ public class enemyPatrol : MonoBehaviour
 
                 if (traveling && navMesh.remainingDistance <= 1.0f)
                 {
+
                     traveling = false;
                     patrolWait = true;
 
