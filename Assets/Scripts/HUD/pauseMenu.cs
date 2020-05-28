@@ -11,6 +11,7 @@ public class pauseMenu : MonoBehaviour
     Movement playerSC;
 
     public GameObject menuPause, buttons, sureDialog, configMenu;
+    public GameObject resumeButton, configExit, exitGameConfirmation;
 
     //public GameObject buttons;
 
@@ -46,7 +47,12 @@ public class pauseMenu : MonoBehaviour
     public void Pause()
     {
         menuPause.SetActive(true);
+        buttons.SetActive(true);
 
+        sureDialog.SetActive(false);
+        configMenu.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(resumeButton);
 
         Time.timeScale = 0f;
         gamePaused = true;        
@@ -72,6 +78,8 @@ public class pauseMenu : MonoBehaviour
     {
         buttons.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(exitGameConfirmation);
+
         sureDialog.SetActive(true);
     }
 
@@ -81,11 +89,16 @@ public class pauseMenu : MonoBehaviour
 
         sureDialog.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(resumeButton);
+
+
     }
 
     public void ShowConfigMenu()
     {
         buttons.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(configExit);
+
 
         configMenu.SetActive(true);
     } 
@@ -95,6 +108,9 @@ public class pauseMenu : MonoBehaviour
         buttons.SetActive(true);
 
         configMenu.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(resumeButton);
+
     }
 
     public void ExitGame()

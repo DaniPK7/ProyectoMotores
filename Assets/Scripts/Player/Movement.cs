@@ -29,6 +29,9 @@ public class Movement : MonoBehaviour
 
     //Player
     public bool playerAlive;
+
+    //Audio management
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,6 +130,8 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
+
+            //pitch a 1.5f
             sprint = true;
 
             if (currentSpeed < sprintSpeed) 
@@ -140,6 +145,7 @@ public class Movement : MonoBehaviour
         }
         else {
             sprint = false;
+            //pitch a 1
 
             if (currentSpeed > walkSpeed)
             {

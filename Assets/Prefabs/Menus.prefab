@@ -680,6 +680,7 @@ MonoBehaviour:
   buttons: {fileID: 138566582926064771}
   sureDialog: {fileID: 138566582103925262}
   configMenu: {fileID: 8878600873425083651}
+  resumeButton: {fileID: 0}
 --- !u!1 &138566582656833977
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +781,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.45490196, g: 0.5411765, b: 0.68235296, a: 0.39215687}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
