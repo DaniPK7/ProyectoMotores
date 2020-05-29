@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class selectedFence : MonoBehaviour
 {
-    public GameObject fence, brokenFence;
+    public GameObject fence, brokenFence, text;
     private generatorManagement generator;
     private plierController plier;
     void Start()
     {
         generator = FindObjectOfType<generatorManagement>();
         plier = FindObjectOfType<plierController>();
+        text.SetActive(false);
         brokenFence.SetActive(false);
     }
 
@@ -23,12 +24,26 @@ public class selectedFence : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!generator.electricityUp && Input.GetKeyDown(KeyCode.R) && plier.plierHUD.activeInHierarchy)
+            if (!generator.electricityUp && plier.plierHUD.activeInHierarchy)
             {
-                fence.SetActive(false);
-                plier.plierHUD.SetActive(false);
-                brokenFence.SetActive(true);
+                text.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    text.SetActive(false);
+                    fence.SetActive(false);
+                    plier.plierHUD.SetActive(false);
+                    brokenFence.SetActive(true);
+                }
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            text.SetActive(false);
         }
     }
 }

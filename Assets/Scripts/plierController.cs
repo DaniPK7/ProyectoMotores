@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class plierController : MonoBehaviour
 {
-    public GameObject plier;
-    public GameObject plierHUD;
+    public GameObject plier, plierHUD, text;
     void Start()
     {
         plier.gameObject.SetActive(true);
         plierHUD.gameObject.SetActive(false);
+        text.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,11 +22,21 @@ public class plierController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            text.SetActive(true);
             if (Input.GetKeyDown(KeyCode.R))
             {
+                text.SetActive(false);
                 Destroy(plier);
                 plierHUD.gameObject.SetActive(true);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            text.SetActive(false);
         }
     }
 }
