@@ -43,6 +43,7 @@ public class goblinSounds : MonoBehaviour
             case 2:
                 goblinSource[source].clip = goblinClips[2];     //Death
                 goblinSource[source].volume = 0.7f;
+                goblinSource[source].pitch = 1.7f;
                 if (!goblinSource[source].isPlaying) goblinSource[source].Play();
 
 
