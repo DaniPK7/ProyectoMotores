@@ -5,7 +5,9 @@ using UnityEngine;
 public class torchlightManagement : MonoBehaviour
 {
     public batteryManagement batterySC;
-    Light torchlight;
+    Light torchlight; 
+    public Light lightTo;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +23,13 @@ public class torchlightManagement : MonoBehaviour
         {
             batterySC.lanternOn = true;
             torchlight.enabled = true;
+            lightTo.enabled = true;
         }
         else 
         {
             batterySC.lanternOn = false;
             torchlight.enabled = false;
+            lightTo.enabled = false;
         }
 
     }
