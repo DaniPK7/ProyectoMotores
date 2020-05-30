@@ -5,9 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class startGame : MonoBehaviour
 {
+    public GameObject load;
+    Scene game = SceneManager.GetSceneByName("Environment");
     public void StarThetGame()
     {
-        SceneManager.LoadScene("Environment");
+
+        load.SetActive(true);
+        SceneManager.LoadSceneAsync("Environment");
+
+    }
+    private void Update()
+    {
+        
+        if (game.isLoaded) 
+        {
+            SceneManager.LoadScene("Environment");
+        }
+
 
     }
 }
