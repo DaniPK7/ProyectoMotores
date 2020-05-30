@@ -117,6 +117,7 @@ public class welcomeScreen : MonoBehaviour
             else if (Input.GetKey(KeyCode.LeftShift))   { infoString = "sprint"; }
             else if (Input.GetKey(KeyCode.Space))       { infoString = "jump"; }
             else if (Input.GetKey(KeyCode.Escape))      { infoString = "pause menu"; }
+            else if (Input.GetKey(KeyCode.E))           { infoString = "turn on / off lantern"; }
             else                                        { infoString = "press the key to see functionality"; }
 
 

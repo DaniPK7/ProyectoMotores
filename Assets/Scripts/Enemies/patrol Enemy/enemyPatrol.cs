@@ -54,9 +54,10 @@ public class enemyPatrol : MonoBehaviour
     batteryManagement batManSC;
     //
     manageAudio audioManage;
+    int wendigoId;
     void Start()
     {
-
+        wendigoId = Convert.ToInt32(this.name.Substring(this.name.Length - 1));
         healthSC = FindObjectOfType<healthbar>();
         playerSC = FindObjectOfType<Movement>();
         //
@@ -146,7 +147,7 @@ public class enemyPatrol : MonoBehaviour
                 if (distanceWithPlayer <= attackRange)      //ataca
                 {
                     navMesh.Stop();
-                    audioManage.SetClip(2);
+                    audioManage.SetClip(wendigoId, 2);
 
                     attackPlayer = true;
                     print("TE REVIENTO");
@@ -164,7 +165,7 @@ public class enemyPatrol : MonoBehaviour
                     if (!chaseHim)
                     {
                         navMesh.Stop();
-                        audioManage.SetClip(1);
+                        audioManage.SetClip(wendigoId, 1);
 
                     }
 
@@ -185,7 +186,7 @@ public class enemyPatrol : MonoBehaviour
 
             else                                                    //Patrol
             {
-                audioManage.SetClip(0);
+                audioManage.SetClip(wendigoId, 0);
 
                 attackPlayer = false;
 

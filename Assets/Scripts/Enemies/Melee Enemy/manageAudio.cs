@@ -5,40 +5,40 @@ using UnityEngine.Audio;
 
 public class manageAudio : MonoBehaviour
 {
-
-    AudioSource wendigoSounds;
+    [SerializeField]
+    AudioSource [] wendigoSounds;
     [SerializeField]
     AudioClip[] wendigoClips ;
     // Start is called before the first frame update
     void Start()
     {
-        wendigoSounds = GetComponent<AudioSource>();
+        //wendigoSounds = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    public void SetClip(int clip) 
+    public void SetClip(int source, int clip) 
     {
        switch (clip)
         {
             case 0:
-                wendigoSounds.clip = wendigoClips[0];
-                wendigoSounds.volume = 0.7f;
+                wendigoSounds[source].clip = wendigoClips[0];
+                wendigoSounds[source].volume = 0.7f;
 
                 break;
             case 1:
-                wendigoSounds.clip = wendigoClips[1];
-                wendigoSounds.volume = 0.7f;
+                wendigoSounds[source].clip = wendigoClips[1];
+                wendigoSounds[source].volume = 0.7f;
 
                 break; 
             case 2:
-                wendigoSounds.clip = wendigoClips[2];
-                wendigoSounds.volume = 0.4f;
+                wendigoSounds[source].clip = wendigoClips[2];
+                wendigoSounds[source].volume = 0.4f;
 
                 break;
 
             default:
                 break;
         }
-        if (!wendigoSounds.isPlaying) wendigoSounds.Play();
+        if (!wendigoSounds[source].isPlaying) wendigoSounds[source].Play();
     }
 }

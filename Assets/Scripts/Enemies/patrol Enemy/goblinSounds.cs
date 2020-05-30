@@ -17,7 +17,7 @@ public class goblinSounds : MonoBehaviour
     // Update is called once per frame
     public void SetClip(int source, int clip)
     {
-        print("Goblin "+ this.name+"con audio source "+ goblinSource[source].name);
+        //print("Goblin "+ this.name+"con audio source "+ goblinSource[source].name);
         switch (clip)
         {
             case 0:

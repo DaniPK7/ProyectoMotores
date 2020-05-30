@@ -12,6 +12,8 @@ public class torchlightManagement : MonoBehaviour
     void Start()
     {
         torchlight = GetComponent<Light>();
+        batterySC.lanternOn = false;
+
         //batterySC = GetComponent<batteryManagement>();
 
     }
@@ -19,7 +21,7 @@ public class torchlightManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && batterySC.currentIndex <= 3)
+        /*if (Input.GetKey(KeyCode.Mouse0) && batterySC.currentIndex <= 3)
         {
             batterySC.lanternOn = true;
             torchlight.enabled = true;
@@ -30,6 +32,20 @@ public class torchlightManagement : MonoBehaviour
             batterySC.lanternOn = false;
             torchlight.enabled = false;
             lightTo.enabled = false;
+        }*/
+        if (Input.GetKeyDown(KeyCode.E) && batterySC.currentIndex <= 3)
+        {
+            batterySC.lanternOn = !batterySC.lanternOn;
+            if (batterySC.lanternOn)
+            {
+                torchlight.enabled = true;
+                lightTo.enabled = true;
+            }
+            else
+            {
+                torchlight.enabled = false;
+                lightTo.enabled = false;
+            }
         }
 
     }

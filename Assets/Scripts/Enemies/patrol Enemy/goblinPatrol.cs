@@ -55,10 +55,11 @@ public class goblinPatrol : MonoBehaviour
     void Start()
     {
         //print("goblin:" + this.name.Substring(this.name.Length-1));
-       
-        goblinId = Convert.ToInt32(this.name.Substring(this.name.Length - 1));
-        print("heheboy"+goblinId);
-        print("heheboy"+goblinId);
+
+        goblinId = Convert.ToInt32(this.name.Substring(6, this.name.Length - 6));//this.name.Substring(this.name.Length - 1));
+       //print(this.name.Substring(this.name.Length - 1));
+       // print("heheboy"+goblinId);
+        //print("heheboy"+goblinId);
 
         healthSC = FindObjectOfType<healthbar>();
         playerSC = FindObjectOfType<Movement>();
@@ -109,7 +110,7 @@ public class goblinPatrol : MonoBehaviour
             enemyAnim.SetBool("Chase", chaseHim);
             enemyAnim.SetBool("Attack", attackPlayer);
         }
-        print("goblin:" + this.name.Substring(this.name.Length-1)+"golbinID: "+ goblinId);
+        print("goblin:" + this.name.Substring(6, this.name.Length-6)+"golbinID: "+ goblinId);
 
     }
 
