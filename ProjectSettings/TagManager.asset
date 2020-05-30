@@ -12,6 +12,7 @@ TagManager:
   - plier
   - light
   - GoblinHand
+  - endGame
   layers:
   - Default
   - TransparentFX

@@ -12,11 +12,13 @@ public class itemManage : MonoBehaviour
 
     public int itemsTaken;
     private int maxItems;
+    public bool allitemsTaken;
 
     void Start()
     {
 
         itemText = GetComponent<TextMeshProUGUI>();
+        allitemsTaken = false;
         itemsTaken = 0;
         maxItems = 5;
         updateText();
@@ -33,6 +35,7 @@ public class itemManage : MonoBehaviour
     public void updateText() 
     {
         itemText.text = itemsTaken + " / " + maxItems;
+        if (itemsTaken == maxItems) { allitemsTaken = true; }
     }
 
    
