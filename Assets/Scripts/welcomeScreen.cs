@@ -11,7 +11,10 @@ using TMPro;
 public class welcomeScreen : MonoBehaviour
 {
 
-    public GameObject  buttons, sureDialog, configMenu;
+    public GameObject buttons, sureDialog, configMenu;
+
+    /*public Texture2D mouse;
+    Texture2D mouseText;*/
 
     public GameObject  exitConfig, configButton , exitButton,  cancelExit;
 
@@ -21,6 +24,8 @@ public class welcomeScreen : MonoBehaviour
 
     private GameObject selected;
 
+    
+
     //
     private bool infoBool;
     public TextMeshProUGUI infoText;
@@ -29,6 +34,10 @@ public class welcomeScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       /* mouseText = (Texture2D)Resources.Load("mouse");
+        Cursor.SetCursor(mouseText, Vector2.zero, CursorMode.Auto);
+        //Cursor.visible = false;*/
+
         infoBool = false;
         infoString = "";
     }
@@ -36,6 +45,8 @@ public class welcomeScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Cursor.SetCursor(mouseText, Vector2.zero,CursorMode.Auto);
+        //mouse.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         showControls();
     }
 

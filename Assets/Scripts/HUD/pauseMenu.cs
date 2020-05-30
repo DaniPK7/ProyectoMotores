@@ -15,7 +15,7 @@ public class pauseMenu : MonoBehaviour
 
     //public GameObject buttons;
 
-    bool gamePaused;
+    public bool gamePaused;
 
     Scene currentScene;
     // Start is called before the first frame update
@@ -28,7 +28,17 @@ public class pauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentScene= SceneManager.GetActiveScene();
+        if (gamePaused)
+        {
+            Cursor.visible = gamePaused;
+        }
+        else 
+        {
+            Cursor.visible = gamePaused;
+
+        }
+
+        currentScene = SceneManager.GetActiveScene();
 
         if (Input.GetKeyDown(KeyCode.Escape) && playerSC.playerAlive)
         {
@@ -46,6 +56,8 @@ public class pauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        //Cursor.visible = true;
+
         menuPause.SetActive(true);
         buttons.SetActive(true);
 
@@ -63,6 +75,8 @@ public class pauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+
+        //Cursor.visible = false;
 
         EventSystem.current.SetSelectedGameObject(null);
 
