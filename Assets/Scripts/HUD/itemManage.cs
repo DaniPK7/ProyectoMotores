@@ -8,10 +8,11 @@ public class itemManage : MonoBehaviour
 {
     // Start is called before the first frame update
     TextMeshProUGUI itemText;
-    
+
+    public GameObject Keys;
 
     public int itemsTaken;
-    private int maxItems;
+    public int maxItems;
     public bool allitemsTaken;
 
     void Start()
@@ -20,7 +21,8 @@ public class itemManage : MonoBehaviour
         itemText = GetComponent<TextMeshProUGUI>();
         allitemsTaken = false;
         itemsTaken = 0;
-        maxItems = 5;
+
+        maxItems = Keys.transform.childCount;// 5;
         updateText();
 
 

@@ -49,7 +49,6 @@ public class EndGame : MonoBehaviour
                 doorAnim.SetTrigger("OpenTheDoor");
 
 
-
             }
         }
     }
