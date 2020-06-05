@@ -28,7 +28,8 @@ public class Movement : MonoBehaviour
     public bool sprint;
 
     //Player
-    public bool playerAlive;
+    public bool playerAlive, endAnimWalk;
+    public float vel;
 
     //Audio management
 
@@ -38,6 +39,8 @@ public class Movement : MonoBehaviour
         playerController = GetComponent<CharacterController>();
         playerAlive = true;
         playerAnim = GetComponent<Animator>();
+        endAnimWalk = false;
+        
     }
     private void FixedUpdate()
     {
@@ -46,35 +49,44 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        vel = playerController.velocity.magnitude;
         if (playerAlive)
         {
-            Sprint();
+            if (endAnimWalk)
+            {
+                playerAnim.SetFloat("walkVelocity", 1);
+                playerController.Move(playerController.transform.forward * walkSpeed * Time.deltaTime);
+                SetGravity();
+            }
+            else
+            {
+                Sprint();
 
-            hInput = Input.GetAxis("Horizontal");
-            vInput = Input.GetAxis("Vertical");
+                hInput = Input.GetAxis("Horizontal");
+                vInput = Input.GetAxis("Vertical");
 
-            playerInput = new Vector3(hInput, 0, vInput);
-            playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
+                playerInput = new Vector3(hInput, 0, vInput);
+                playerInput = Vector3.ClampMagnitude(playerInput, 1);  //Para que la velocidad no sea mayor al ir en diagonal
 
-            playerAnim.SetFloat("walkVelocity", playerInput.magnitude * currentSpeed);
+                playerAnim.SetFloat("walkVelocity", playerInput.magnitude * currentSpeed);
 
-            camDirection();
+                camDirection();
 
-            playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
+                playerDirection = playerInput.x * cameraRight + playerInput.z * cameraForward;      //La direccion que debe tener nuestro pj
 
-            playerController.transform.LookAt(playerController.transform.position + playerDirection);   //Girar desde su posicion hacia la correspondiente
+                playerController.transform.LookAt(playerController.transform.position + playerDirection);   //Girar desde su posicion hacia la correspondiente
 
-            SetGravity();      //Gravedad del pj
-            Jump();
+                SetGravity();      //Gravedad del pj
+                Jump();
 
-            playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
+                playerController.Move(playerDirection * currentSpeed * Time.deltaTime);
 
-            Vector3 a = playerDirection;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
-                                        //print(cameraForward + "\nRight: " + cameraRight);
-                                        //print("Vel: " + a);
-                                        //print(vInput);
-                                        //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+                Vector3 a = playerDirection;// (Mathf.Abs(playerController.velocity.x) * Mathf.Abs(playerController.velocity.y) );
+                                            //print(cameraForward + "\nRight: " + cameraRight);
+                                            //print("Vel: " + a);
+                                            //print(vInput);
+                                            //playerSpeed = Mathf.Floor(playerController.velocity.magnitude);
+            }
         }
         else { 
             playerAnim.SetTrigger("DeadTrigger");

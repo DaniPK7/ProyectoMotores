@@ -5,17 +5,18 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using System;
 
 public class pauseMenu : MonoBehaviour
 {
     Movement playerSC;
 
-    public GameObject menuPause, buttons, sureDialog, configMenu;
-    public GameObject resumeButton, configExit, exitGameConfirmation;
+    public GameObject menuPause, deathMenu, buttons, sureDialog, configMenu;
+    public GameObject resumeButton, configExit, exitGameConfirmation, restartButton;
 
     //public GameObject buttons;
 
-    public bool gamePaused;
+    public bool gamePaused, dead;
 
     Scene currentScene;
     // Start is called before the first frame update
@@ -23,6 +24,9 @@ public class pauseMenu : MonoBehaviour
     {
         playerSC = FindObjectOfType<Movement>();
         gamePaused = false;
+        dead = false;
+        Time.timeScale = 1f;
+
     }
 
     // Update is called once per frame
@@ -40,7 +44,13 @@ public class pauseMenu : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        if (Input.GetKeyDown(KeyCode.Escape) && playerSC.playerAlive)
+        if (!playerSC.playerAlive)
+        {
+            ShowDeathMenu();
+
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Escape) && playerSC.playerAlive)
         {
             if (gamePaused)
             {
@@ -51,6 +61,21 @@ public class pauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+
+        
+    }
+
+    private void ShowDeathMenu()
+    {
+        if (!dead)
+        {
+            dead = true;
+            deathMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(restartButton);
+
+            Time.timeScale = 0f;
+            Cursor.visible = true;
         }
     }
 
@@ -130,5 +155,14 @@ public class pauseMenu : MonoBehaviour
     public void ExitGame()
     {
        Application.Quit();
+    }
+
+    public void RestartLvl() 
+    {
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(currentScene.name);
+
+
     }
 }

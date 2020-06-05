@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerSounds : MonoBehaviour
 {
     AudioSource audioSource;
+    public Movement movementSC;
     //public float pitch;
 
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class playerSounds : MonoBehaviour
         print("Pasos: "+audioSource.isPlaying);
 
         if (Input.GetKey(KeyCode.Space)) { audioSource.Pause(); }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))       //If is moving
+        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && movementSC.vel > 0)       //If is moving
         {
             if (!audioSource.isPlaying) { audioSource.Play(); }
            
@@ -27,7 +28,7 @@ public class playerSounds : MonoBehaviour
             {
                 if (audioSource.pitch < 1.5f)
                 {
-                    audioSource.pitch += 0.0025f;
+                    audioSource.pitch += 0.005f;
                 }
                 else if (audioSource.pitch >= 1.5f)
                 {
@@ -36,7 +37,7 @@ public class playerSounds : MonoBehaviour
             }
             else
             {
-                audioSource.pitch = 1f;
+                audioSource.pitch = 0.87f;
             }
         }
         else 
