@@ -11,7 +11,6 @@ public class EndGameScreen : MonoBehaviour
     {
         title.SetActive(true);
         buttons.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(playAgainBtn);
         Cursor.visible = true;
     }
 
@@ -32,5 +31,10 @@ public class EndGameScreen : MonoBehaviour
     public void Home()
     {
         SceneManager.LoadScene("welcomeScreen");
+    }
+
+    private void movingAround()
+    {
+        EventSystem.current.SetSelectedGameObject(playAgainBtn);
     }
 }
