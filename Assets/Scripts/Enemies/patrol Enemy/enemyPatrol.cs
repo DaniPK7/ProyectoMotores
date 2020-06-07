@@ -36,7 +36,7 @@ public class enemyPatrol : MonoBehaviour
     public GameObject player;
     float chaseRange = 10f;
 
-    float attackRange = 3.5f;
+    float attackRange = 3.25f;
     bool attackPlayer;
 
     bool inRange = false;
@@ -98,6 +98,14 @@ public class enemyPatrol : MonoBehaviour
         setState();
 
         patrolOrWait();
+
+        if (attackPlayer)
+        {
+            Vector3 direction = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 1f * Time.deltaTime);
+        }
+
         playerAlive = playerSC.playerAlive;
 
         enemyAnim.SetBool("Wait", waiting);
@@ -150,6 +158,7 @@ public class enemyPatrol : MonoBehaviour
                     audioManage.SetClip(wendigoId, 2);
 
                     attackPlayer = true;
+                    
                     print("TE REVIENTO");
 
 
