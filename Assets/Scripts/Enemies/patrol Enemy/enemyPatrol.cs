@@ -36,7 +36,7 @@ public class enemyPatrol : MonoBehaviour
     public GameObject player;
     float chaseRange = 10f;
 
-    float attackRange = 4f;
+    float attackRange = 3.5f;
     bool attackPlayer;
 
     bool inRange = false;
