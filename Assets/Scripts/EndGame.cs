@@ -6,7 +6,7 @@ using TMPro;
 
 public class EndGame : MonoBehaviour
 {
-    public GameObject textObject;
+    public GameObject textObject, openDoorSFX;
     bool allTaken;
     itemManage itemManage;
     //Scene postGame;
@@ -17,11 +17,13 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //postGame = SceneManager.GetSceneByName("PostGame");
         itemManage = FindObjectOfType<itemManage>();
         lightColor = Color.green;
         textObject.SetActive(false);
-
+        openDoorSFX.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -46,6 +48,7 @@ public class EndGame : MonoBehaviour
             {
                 textObject.SetActive(false);
                 bunkerLight.color = lightColor;
+                openDoorSFX.SetActive(true);
                 doorAnim.SetTrigger("OpenTheDoor");
 
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class generatorManagement : MonoBehaviour
 {
-    public GameObject generator, text;
+    public GameObject generator, text, turnOffSFX;
+    //public AudioSource turnOffSFX;
     public bool electricityUp;
     void Start()
     {
@@ -26,6 +27,7 @@ public class generatorManagement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 text.SetActive(false);
+                turnOffSFX.gameObject.SetActive(true);
                 generator.gameObject.SetActive(false);
                 electricityUp = false;
             }
