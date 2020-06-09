@@ -30,7 +30,7 @@ public class EndGameScreen : MonoBehaviour
 
     public void Home()
     {
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("welcomeScreen");
     }
 
     private void movingAround()
