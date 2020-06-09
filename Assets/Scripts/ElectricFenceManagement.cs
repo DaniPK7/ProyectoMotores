@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElectricFenceManagement : MonoBehaviour
 {
     public GameObject fence;
+    public GameObject electricitySFX;
 
     private healthbar healthbar;
     private generatorManagement generator;
@@ -21,6 +22,7 @@ public class ElectricFenceManagement : MonoBehaviour
         if (!generator.electricityUp)
         {
             Destroy(fence);
+            Destroy(electricitySFX);
         }
     }
 
