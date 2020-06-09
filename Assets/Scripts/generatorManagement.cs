@@ -12,6 +12,7 @@ public class generatorManagement : MonoBehaviour
         generator.gameObject.SetActive(true);
         electricityUp = true;
         text.SetActive(false);
+        turnOffSFX.SetActive(false);
     }
 
     // Update is called once per frame
